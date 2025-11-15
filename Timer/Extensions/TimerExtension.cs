@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
 using System;
 using System.Runtime.CompilerServices;
 using Sharp.Shared;
@@ -24,51 +24,54 @@ namespace SurfTimer.Extensions;
 
 internal static class TimerExtension
 {
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Guid DelayCall(this IModSharp sharp, double interval, Action call)
-        => sharp.PushTimer(call, interval);
+    extension(IModSharp sharp)
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Guid DelayCall(double interval, Action call)
+            => sharp.PushTimer(call, interval);
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Guid DelayCall(this IModSharp sharp, double interval, Func<TimerAction> call)
-        => sharp.PushTimer(call, interval);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Guid DelayCall(double interval, Func<TimerAction> call)
+            => sharp.PushTimer(call, interval);
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Guid DelayCallThisRound(this IModSharp sharp, double interval, Action call)
-        => sharp.PushTimer(call, interval, GameTimerFlags.StopOnRoundEnd);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Guid DelayCallThisRound(double interval, Action call)
+            => sharp.PushTimer(call, interval, GameTimerFlags.StopOnRoundEnd);
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Guid DelayCallThisRound(this IModSharp sharp, double interval, Func<TimerAction> call)
-        => sharp.PushTimer(call, interval, GameTimerFlags.StopOnRoundEnd);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Guid DelayCallThisRound(double interval, Func<TimerAction> call)
+            => sharp.PushTimer(call, interval, GameTimerFlags.StopOnRoundEnd);
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Guid DelayCallThisMap(this IModSharp sharp, double interval, Action call)
-        => sharp.PushTimer(call, interval, GameTimerFlags.StopOnMapEnd);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Guid DelayCallThisMap(double interval, Action call)
+            => sharp.PushTimer(call, interval, GameTimerFlags.StopOnMapEnd);
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Guid DelayCallThisMap(this IModSharp sharp, double interval, Func<TimerAction> call)
-        => sharp.PushTimer(call, interval, GameTimerFlags.StopOnMapEnd);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Guid DelayCallThisMap(double interval, Func<TimerAction> call)
+            => sharp.PushTimer(call, interval, GameTimerFlags.StopOnMapEnd);
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Guid RepeatCall(this IModSharp sharp, double interval, Action call)
-        => sharp.PushTimer(call, interval, GameTimerFlags.Repeatable);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Guid RepeatCall(double interval, Action call)
+            => sharp.PushTimer(call, interval, GameTimerFlags.Repeatable);
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Guid RepeatCall(this IModSharp sharp, double interval, Func<TimerAction> call)
-        => sharp.PushTimer(call, interval, GameTimerFlags.Repeatable);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Guid RepeatCall(double interval, Func<TimerAction> call)
+            => sharp.PushTimer(call, interval, GameTimerFlags.Repeatable);
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Guid RepeatCallThisRound(this IModSharp sharp, double interval, Action call)
-        => sharp.PushTimer(call, interval, GameTimerFlags.Repeatable | GameTimerFlags.StopOnRoundEnd);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Guid RepeatCallThisRound(double interval, Action call)
+            => sharp.PushTimer(call, interval, GameTimerFlags.Repeatable | GameTimerFlags.StopOnRoundEnd);
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Guid RepeatCallThisRound(this IModSharp sharp, double interval, Func<TimerAction> call)
-        => sharp.PushTimer(call, interval, GameTimerFlags.Repeatable | GameTimerFlags.StopOnRoundEnd);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Guid RepeatCallThisRound(double interval, Func<TimerAction> call)
+            => sharp.PushTimer(call, interval, GameTimerFlags.Repeatable | GameTimerFlags.StopOnRoundEnd);
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Guid RepeatCallThisMap(this IModSharp sharp, double interval, Action call)
-        => sharp.PushTimer(call, interval, GameTimerFlags.Repeatable | GameTimerFlags.StopOnMapEnd);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Guid RepeatCallThisMap(double interval, Action call)
+            => sharp.PushTimer(call, interval, GameTimerFlags.Repeatable | GameTimerFlags.StopOnMapEnd);
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Guid RepeatCallThisMap(this IModSharp sharp, double interval, Func<TimerAction> call)
-        => sharp.PushTimer(call, interval, GameTimerFlags.Repeatable | GameTimerFlags.StopOnMapEnd);
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Guid RepeatCallThisMap(double interval, Func<TimerAction> call)
+            => sharp.PushTimer(call, interval, GameTimerFlags.Repeatable | GameTimerFlags.StopOnMapEnd);
+    }
 }

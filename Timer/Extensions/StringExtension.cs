@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
 using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
@@ -52,102 +52,108 @@ internal static class StringExtension
         ColorCodeAlternateLookup = frozenMapping.GetAlternateLookup<ReadOnlySpan<char>>();
     }
 
-    public static string RemoveColorPlaceholder(this string value)
+    extension(string value)
     {
-        if (string.IsNullOrEmpty(value))
+        public string RemoveColorPlaceholder()
         {
-            return string.Empty;
-        }
-
-        var valueSpan = value.AsSpan();
-
-        if (valueSpan.IndexOfAny(Braces) == -1)
-        {
-            return value;
-        }
-
-        using var sb     = ZString.CreateStringBuilder(true);
-        var       cursor = 0;
-
-        while (cursor < valueSpan.Length)
-        {
-            var braceIndex = valueSpan[cursor..].IndexOfAny(Braces);
-
-            if (braceIndex == -1)
+            if (string.IsNullOrEmpty(value))
             {
-                sb.Append(valueSpan[cursor..]);
-
-                break;
+                return string.Empty;
             }
 
-            // Adjust braceIndex to be relative to the full string span
-            braceIndex += cursor;
+            var valueSpan = value.AsSpan();
 
-            // Append the text segment from the cursor to the brace
-            sb.Append(valueSpan.Slice(cursor, braceIndex - cursor));
-
-            // Handle escaped braces: {{ or }}
-            if (braceIndex + 1 < valueSpan.Length && valueSpan[braceIndex + 1] == valueSpan[braceIndex])
+            if (valueSpan.IndexOfAny(Braces) == -1)
             {
-                sb.Append(valueSpan[braceIndex]);
-                cursor = braceIndex + 2; // Move cursor past both characters of the escape sequence
-
-                continue;
+                return value;
             }
 
-            // Handle a potential placeholder starting with '{'
-            if (valueSpan[braceIndex] == '{')
-            {
-                var endIndex = valueSpan[(braceIndex + 1)..].IndexOf('}');
+            using var sb     = ZString.CreateStringBuilder(true);
+            var       cursor = 0;
 
-                // Check if a valid placeholder was found
-                if (endIndex == -1)
+            while (cursor < valueSpan.Length)
+            {
+                var braceIndex = valueSpan[cursor..]
+                    .IndexOfAny(Braces);
+
+                if (braceIndex == -1)
                 {
-                    // Unterminated placeholder; treat '{' as a literal
-                    sb.Append('{');
-                    cursor = braceIndex + 1;
+                    sb.Append(valueSpan[cursor..]);
+
+                    break;
+                }
+
+                // Adjust braceIndex to be relative to the full string span
+                braceIndex += cursor;
+
+                // Append the text segment from the cursor to the brace
+                sb.Append(valueSpan.Slice(cursor, braceIndex - cursor));
+
+                // Handle escaped braces: {{ or }}
+                if (braceIndex + 1 < valueSpan.Length && valueSpan[braceIndex + 1] == valueSpan[braceIndex])
+                {
+                    sb.Append(valueSpan[braceIndex]);
+                    cursor = braceIndex + 2; // Move cursor past both characters of the escape sequence
 
                     continue;
                 }
 
-                endIndex += braceIndex + 1;
-                var placeholderSpan = valueSpan.Slice(braceIndex, (endIndex - braceIndex) + 1);
-
-                if (ColorCodeAlternateLookup.TryGetValue(placeholderSpan, out var replacement))
+                // Handle a potential placeholder starting with '{'
+                if (valueSpan[braceIndex] == '{')
                 {
-                    sb.Append(replacement);
-                    cursor = endIndex + 1;
+                    var endIndex = valueSpan[(braceIndex + 1)..]
+                        .IndexOf('}');
+
+                    // Check if a valid placeholder was found
+                    if (endIndex == -1)
+                    {
+                        // Unterminated placeholder; treat '{' as a literal
+                        sb.Append('{');
+                        cursor = braceIndex + 1;
+
+                        continue;
+                    }
+
+                    endIndex += braceIndex + 1;
+                    var placeholderSpan = valueSpan.Slice(braceIndex, (endIndex - braceIndex) + 1);
+
+                    if (ColorCodeAlternateLookup.TryGetValue(placeholderSpan, out var replacement))
+                    {
+                        sb.Append(replacement);
+                        cursor = endIndex + 1;
+                    }
+                    else
+                    {
+                        // Invalid placeholder; treat '{' as a literal
+                        sb.Append('{');
+                        cursor = braceIndex + 1;
+                    }
                 }
                 else
                 {
-                    // Invalid placeholder; treat '{' as a literal
-                    sb.Append('{');
+                    // Handle an unmatched '}' as a literal character
+                    sb.Append('}');
                     cursor = braceIndex + 1;
                 }
             }
-            else
-            {
-                // Handle an unmatched '}' as a literal character
-                sb.Append('}');
-                cursor = braceIndex + 1;
-            }
+
+            return sb.ToString();
         }
 
-        return sb.ToString();
-    }
-
-    public static bool ContainsItem(this string value, char delimiter, string target)
-    {
-        var span = value.AsSpan();
-
-        foreach (var chunk in span.Split(delimiter))
+        private bool ContainsItem(char delimiter, string target)
         {
-            if (span[chunk].SequenceEqual(target))
-            {
-                return true;
-            }
-        }
+            var span = value.AsSpan();
 
-        return false;
+            foreach (var chunk in span.Split(delimiter))
+            {
+                if (span[chunk]
+                    .SequenceEqual(target))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

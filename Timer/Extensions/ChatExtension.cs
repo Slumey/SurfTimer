@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
 using Sharp.Shared;
 using Sharp.Shared.Definition;
 using Sharp.Shared.Enums;
@@ -24,18 +24,14 @@ namespace SurfTimer.Extensions;
 
 internal static class ChatExtension
 {
+    private const string Tag = $" {ChatColor.Lime}Timer{ChatColor.White} | ";
+
     public static void PrintToChat(this IPlayerController controller, string msg)
-    {
-        controller.Print(HudPrintChannel.Chat, $" {ChatColor.Lime}Timer{ChatColor.White} | {msg}");
-    }
+        => controller.Print(HudPrintChannel.Chat, $"{Tag}{msg}");
 
     public static void PrintToChat(this IPlayerPawn pawn, string msg)
-    {
-        pawn.Print(HudPrintChannel.Chat, $" {ChatColor.Lime}Timer{ChatColor.White} | {msg}");
-    }
+        => pawn.Print(HudPrintChannel.Chat, $"{Tag}{msg}");
 
     public static void PrintToChatWithPrefix(this IModSharp sharp, string msg)
-    {
-        sharp.PrintToChatAll($" {ChatColor.Lime}Timer{ChatColor.White} | {msg}");
-    }
+        => sharp.PrintToChatAll($"{Tag}{msg}");
 }
