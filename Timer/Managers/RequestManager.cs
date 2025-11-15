@@ -1,6 +1,6 @@
-﻿/*
+/*
  * Source2Surf/Timer
- * Copyright (C) 2025 Nukoooo
+ * Copyright (C) 2025 Nukoooo and Kxnrl
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -19,10 +19,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Sharp.Shared.Units;
-using SurfTimer.Managers.Request.Models;
+using Source2Surf.Timer.Managers.Request.Models;
 
 // ReSharper disable once CheckNamespace
-namespace SurfTimer.Managers;
+namespace Source2Surf.Timer.Managers;
 
 internal enum EAttemptResult
 {

@@ -1,6 +1,6 @@
 ﻿/*
  * Source2Surf/Timer
- * Copyright (C) 2025 Nukoooo
+ * Copyright (C) 2025 Nukoooo and Kxnrl
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -18,7 +18,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace SurfTimer.Modules.MapInfo;
+namespace Source2Surf.Timer.Modules.MapInfo;
 
 internal record MapConfig
 {

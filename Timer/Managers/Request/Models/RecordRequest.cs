@@ -1,6 +1,6 @@
 ﻿/*
  * Source2Surf/Timer
- * Copyright (C) 2025 Nukoooo
+ * Copyright (C) 2025 Nukoooo and Kxnrl
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -19,7 +19,7 @@ using System;
 using System.Collections.Generic;
 using Sharp.Shared.Types;
 
-namespace SurfTimer.Managers.Request.Models;
+namespace Source2Surf.Timer.Managers.Request.Models;
 
 internal class RecordRequest : IComparable<RecordRequest>
 {

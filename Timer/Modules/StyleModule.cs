@@ -1,6 +1,6 @@
-﻿/*
+/*
  * Source2Surf/Timer
- * Copyright (C) 2025 Nukoooo
+ * Copyright (C) 2025 Nukoooo and Kxnrl
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -28,13 +28,13 @@ using Sharp.Shared.HookParams;
 using Sharp.Shared.Listeners;
 using Sharp.Shared.Objects;
 using Sharp.Shared.Types;
-using SurfTimer.Managers;
-using SurfTimer.Managers.Player;
-using SurfTimer.Modules.Style;
-using SurfTimer.Modules.Timer;
-using SurfTimer.Modules.Zone;
+using Source2Surf.Timer.Managers;
+using Source2Surf.Timer.Managers.Player;
+using Source2Surf.Timer.Modules.Style;
+using Source2Surf.Timer.Modules.Timer;
+using Source2Surf.Timer.Modules.Zone;
 
-namespace SurfTimer.Modules;
+namespace Source2Surf.Timer.Modules;
 
 internal interface IStyleModule
 {

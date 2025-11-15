@@ -1,6 +1,6 @@
 ﻿/*
  * Source2Surf/Timer
- * Copyright (C) 2025 Nukoooo
+ * Copyright (C) 2025 Nukoooo and Kxnrl
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -25,7 +25,7 @@ using Sharp.Shared;
 using Sharp.Shared.Managers;
 using Sharp.Shared.Objects;
 
-namespace SurfTimer;
+namespace Source2Surf.Timer;
 
 internal interface IModule
 {
@@ -53,24 +53,24 @@ internal interface IManager
 
 internal class InterfaceBridge
 {
-    private readonly SurfTimer     _entrypoint;
+    private readonly Timer _entrypoint;
 
-    public InterfaceBridge(SurfTimer         entrypoint,
-                           string            dllPath,
-                           string            sharpPath,
-                           Version           version,
-                           ISharedSystem     sharedSystem,
-                           IConfiguration    coreConfig,
-                           bool              hotreload,
-                           CancellationToken token,
-                           bool              debug)
+    public InterfaceBridge(Timer entrypoint,
+        string                   dllPath,
+        string                   sharpPath,
+        Version                  version,
+        ISharedSystem            sharedSystem,
+        IConfiguration           coreConfig,
+        bool                     hotReload,
+        CancellationToken        token,
+        bool                     debug)
     {
         _entrypoint       = entrypoint;
         DllPath           = dllPath;
         SharpPath         = sharpPath;
         Version           = version;
         CoreConfig        = coreConfig;
-        Hotreload         = hotreload;
+        HotReload         = hotReload;
         CancellationToken = token;
         Debug             = debug;
 
@@ -105,7 +105,7 @@ internal class InterfaceBridge
 
     public IConfiguration CoreConfig { get; }
 
-    public bool Hotreload { get; }
+    public bool HotReload { get; }
 
     public CancellationToken CancellationToken { get; }
 

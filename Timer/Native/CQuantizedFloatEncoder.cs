@@ -1,6 +1,6 @@
 ﻿/*
  * Source2Surf/Timer
- * Copyright (C) 2025 Nukoooo
+ * Copyright (C) 2025 Nukoooo and Kxnrl
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 
 // ReSharper disable InconsistentNaming
 
-namespace SurfTimer.Native;
+namespace Source2Surf.Timer.Native;
 
 [StructLayout(LayoutKind.Explicit, Pack = 4, Size = 8)]
 internal struct CQuantizedFloatEncoder

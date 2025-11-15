@@ -1,6 +1,6 @@
 ﻿/*
  * Source2Surf/Timer
- * Copyright (C) 2025 Nukoooo
+ * Copyright (C) 2025 Nukoooo and Kxnrl
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,7 +20,7 @@ using Sharp.Shared.Types;
 using Sharp.Shared.Units;
 
 // ReSharper disable once CheckNamespace
-namespace SurfTimer.Modules;
+namespace Source2Surf.Timer.Modules;
 
 internal partial class RecordModule
 {

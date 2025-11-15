@@ -1,6 +1,6 @@
 ﻿/*
  * Source2Surf/Timer
- * Copyright (C) 2025 Nukoooo
+ * Copyright (C) 2025 Nukoooo and Kxnrl
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -22,26 +22,26 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sharp.Shared;
-using SurfTimer.Managers;
-using SurfTimer.Modules;
+using Source2Surf.Timer.Managers;
+using Source2Surf.Timer.Modules;
 
 [assembly: DisableRuntimeMarshalling]
 
-namespace SurfTimer;
+namespace Source2Surf.Timer;
 
-public class SurfTimer : IModSharpModule
+public class Timer : IModSharpModule
 {
     private readonly InterfaceBridge         _bridge;
-    private readonly ILogger<SurfTimer>      _logger;
+    private readonly ILogger<Timer>          _logger;
     private readonly ServiceProvider         _serviceProvider;
     private readonly CancellationTokenSource _token;
 
-    public SurfTimer(ISharedSystem   sharedSystem,
-                     string?         dllPath,
-                     string?         sharpPath,
-                     Version?        version,
-                     IConfiguration? coreConfiguration,
-                     bool            hotReload)
+    public Timer(ISharedSystem sharedSystem,
+        string?                dllPath,
+        string?                sharpPath,
+        Version?               version,
+        IConfiguration?        coreConfiguration,
+        bool                   hotReload)
     {
         ArgumentNullException.ThrowIfNull(dllPath);
         ArgumentNullException.ThrowIfNull(sharpPath);
@@ -66,7 +66,7 @@ public class SurfTimer : IModSharpModule
                                                      .HasCommandLine("-debug"));
 
         var factory = sharedSystem.GetLoggerFactory();
-        var logger  = factory.CreateLogger<SurfTimer>();
+        var logger  = factory.CreateLogger<Timer>();
 
         var gameData = sharedSystem.GetModSharp()
                                    .GetGameData();

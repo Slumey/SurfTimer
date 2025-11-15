@@ -1,6 +1,6 @@
-﻿/*
+/*
  * Source2Surf/Timer
- * Copyright (C) 2025 Nukoooo
+ * Copyright (C) 2025 Nukoooo and Kxnrl
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -23,9 +23,9 @@ using System.Threading.Tasks;
 using LiteDB;
 using Microsoft.Extensions.Logging;
 using Sharp.Shared.Units;
-using SurfTimer.Managers.Request.Models;
+using Source2Surf.Timer.Managers.Request.Models;
 
-namespace SurfTimer.Managers;
+namespace Source2Surf.Timer.Managers;
 
 internal class RequestManagerLiteDB : IManager, IRequestManager
 {

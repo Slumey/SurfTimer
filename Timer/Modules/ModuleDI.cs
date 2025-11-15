@@ -1,6 +1,6 @@
 ﻿/*
  * Source2Surf/Timer
- * Copyright (C) 2025 Nukoooo
+ * Copyright (C) 2025 Nukoooo and Kxnrl
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -17,7 +17,7 @@
  
 using Microsoft.Extensions.DependencyInjection;
 
-namespace SurfTimer.Modules;
+namespace Source2Surf.Timer.Modules;
 
 // ReSharper disable once InconsistentNaming
 internal static class ModuleDI

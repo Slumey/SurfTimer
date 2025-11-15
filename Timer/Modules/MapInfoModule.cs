@@ -1,6 +1,6 @@
-﻿/*
+/*
  * Source2Surf/Timer
- * Copyright (C) 2025 Nukoooo
+ * Copyright (C) 2025 Nukoooo and Kxnrl
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -24,12 +24,12 @@ using Microsoft.Extensions.Logging;
 using Sharp.Shared.Enums;
 using Sharp.Shared.Listeners;
 using Sharp.Shared.Types;
-using SurfTimer.Managers;
-using SurfTimer.Managers.Player;
-using SurfTimer.Managers.Request.Models;
-using SurfTimer.Modules.MapInfo;
+using Source2Surf.Timer.Managers;
+using Source2Surf.Timer.Managers.Player;
+using Source2Surf.Timer.Managers.Request.Models;
+using Source2Surf.Timer.Modules.MapInfo;
 
-namespace SurfTimer.Modules;
+namespace Source2Surf.Timer.Modules;
 
 internal interface IMapInfoModule
 {

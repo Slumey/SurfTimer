@@ -1,6 +1,6 @@
 ﻿/*
  * Source2Surf/Timer
- * Copyright (C) 2025 Nukoooo
+ * Copyright (C) 2025 Nukoooo and Kxnrl
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,7 +20,7 @@ using System.Runtime.CompilerServices;
 using Sharp.Shared.GameEntities;
 using Sharp.Shared.Types;
 
-namespace SurfTimer.Modules.Zone;
+namespace Source2Surf.Timer.Modules.Zone;
 
 internal class BuildZoneInfo
 {

@@ -1,6 +1,6 @@
-﻿/*
+/*
  * Source2Surf/Timer
- * Copyright (C) 2025 Nukoooo
+ * Copyright (C) 2025 Nukoooo and Kxnrl
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -25,10 +25,9 @@ using Sharp.Shared.Listeners;
 using Sharp.Shared.Managers;
 using Sharp.Shared.Objects;
 using Sharp.Shared.Types;
-using SurfTimer.Managers.Player;
-using static SurfTimer.Managers.ICommandManager;
+using Source2Surf.Timer.Managers.Player;
 
-namespace SurfTimer.Managers;
+namespace Source2Surf.Timer.Managers;
 
 internal interface ICommandManager
 {
@@ -49,15 +48,15 @@ internal interface ICommandManager
 
 internal class CommandManager : IManager, ICommandManager, IClientListener
 {
-    private readonly Dictionary<string, ClientCommandDelegate>               _adminChatCommands;
-    private readonly InterfaceBridge                                         _bridge;
+    private readonly Dictionary<string, ICommandManager.ClientCommandDelegate> _adminChatCommands;
+    private readonly InterfaceBridge                                           _bridge;
 
     private readonly Dictionary<string, Func<StringCommand, ECommandAction>> _serverCommands;
 
-    private readonly Dictionary<string, ClientCommandDelegate>                _clientChatCommands;
-    private readonly Dictionary<string, ClientCommandDelegate>                _styleCommands;
-    private readonly Dictionary<string, IClientManager.DelegateClientCommand> _clientCommandListeners;
-    private readonly FrozenSet<char>                                          _commandTriggers;
+    private readonly Dictionary<string, ICommandManager.ClientCommandDelegate> _clientChatCommands;
+    private readonly Dictionary<string, ICommandManager.ClientCommandDelegate> _styleCommands;
+    private readonly Dictionary<string, IClientManager.DelegateClientCommand>  _clientCommandListeners;
+    private readonly FrozenSet<char>                                           _commandTriggers;
 
     private readonly ILogger<CommandManager> _logger;
 
@@ -121,7 +120,7 @@ internal class CommandManager : IManager, ICommandManager, IClientListener
         return ECommandAction.Skipped;
     }
 
-    public void AddClientChatCommand(string command, ClientCommandDelegate handler)
+    public void AddClientChatCommand(string command, ICommandManager.ClientCommandDelegate handler)
     {
         if (_clientChatCommands.TryAdd(command, handler))
         {
@@ -131,7 +130,7 @@ internal class CommandManager : IManager, ICommandManager, IClientListener
         _logger.LogWarning("{cmd} is already added in _clientChatCommands.", command);
     }
 
-    public void AddAdminChatCommand(string command, ClientCommandDelegate handler)
+    public void AddAdminChatCommand(string command, ICommandManager.ClientCommandDelegate handler)
     {
         if (_adminChatCommands.TryAdd(command, handler))
         {
@@ -163,7 +162,7 @@ internal class CommandManager : IManager, ICommandManager, IClientListener
         }
     }
 
-    public void AddStyleCommand(string command, ClientCommandDelegate handler)
+    public void AddStyleCommand(string command, ICommandManager.ClientCommandDelegate handler)
     {
         if (_styleCommands.TryAdd(command, handler))
         {

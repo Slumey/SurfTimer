@@ -1,6 +1,6 @@
-﻿/*
+/*
  * Source2Surf/Timer
- * Copyright (C) 2025 Nukoooo
+ * Copyright (C) 2025 Nukoooo and Kxnrl
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -21,11 +21,11 @@ using Microsoft.Extensions.Logging;
 using Sharp.Shared.Enums;
 using Sharp.Shared.Listeners;
 using Sharp.Shared.Objects;
-using FireEventCallback = SurfTimer.Managers.IEventHookManager.DelegateOnEventFired;
+using FireEventCallback = Source2Surf.Timer.Managers.IEventHookManager.DelegateOnEventFired;
 using HookEventCallback
-    = System.Func<SurfTimer.Managers.EventHookParams, Sharp.Shared.Types.HookReturnValue<bool>>;
+    = System.Func<Source2Surf.Timer.Managers.EventHookParams, Sharp.Shared.Types.HookReturnValue<bool>>;
 
-namespace SurfTimer.Managers;
+namespace Source2Surf.Timer.Managers;
 
 internal interface IEventHookManager
 {

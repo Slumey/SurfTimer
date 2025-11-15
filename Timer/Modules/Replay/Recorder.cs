@@ -1,6 +1,6 @@
-﻿/*
+/*
  * Source2Surf/Timer
- * Copyright (C) 2025 Nukoooo
+ * Copyright (C) 2025 Nukoooo and Kxnrl
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -26,16 +26,16 @@ using Sharp.Shared.GameEntities;
 using Sharp.Shared.HookParams;
 using Sharp.Shared.Types;
 using Sharp.Shared.Units;
-using SurfTimer.Extensions;
-using SurfTimer.Managers;
-using SurfTimer.Managers.Request.Models;
-using SurfTimer.Modules.Replay;
-using SurfTimer.Modules.Timer;
+using Source2Surf.Timer.Extensions;
+using Source2Surf.Timer.Managers;
+using Source2Surf.Timer.Managers.Request.Models;
+using Source2Surf.Timer.Modules.Replay;
+using Source2Surf.Timer.Modules.Timer;
 using ZstdSharp;
 using ZstdSharp.Unsafe;
 
 // ReSharper disable CheckNamespace
-namespace SurfTimer.Modules;
+namespace Source2Surf.Timer.Modules;
 // ReSharper restore CheckNamespace
 
 internal partial class ReplayModule
